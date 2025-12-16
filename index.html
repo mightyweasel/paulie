@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <link rel="stylesheet" href="css/pico.min.css">
+    <link rel="stylesheet" href="css/pico.colors.min.css">
+    <title>Paulie - Quick LLM Personas through Prompt Policies</title>
+  </head>
+  <body>
+    <header data-theme="dark" class="container-fluid pico-background-purple-700">
+      <nav>
+        <ul>
+          <li>
+            <strong>Paulie</strong>
+            <small>:: A quick LLM prompt policy for virtual brainstorming</small>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="container">
+      <section id="prebuilt" class="grid">
+        <article>
+          <p><strong>GC Generic</strong></p>
+          <button type="submit" data-theme="dark" class="container-fluid pico-background-purple-700" data-tooltip="Will copy output to clipboard automatically"
+            make-persona-prebuilt-GC-generic="make-persona-prebuilt-GC-generic">
+            Use Persona
+          </button>
+          <small>A generic Prompt Policy that provides general GC brainstorming support.</small>
+        </article>
+        <article>
+          <p><strong>Sr. EC Analyst</strong></p>
+          <button type="submit" data-theme="dark" class="container-fluid pico-background-purple-700" data-tooltip="Will copy output to clipboard automatically"
+            make-persona-prebuilt-EC-Analyst="make-persona-prebuilt-EC-Analyst">
+            Use Persona
+          </button>
+          <small>A capable GC policy analyst, operate under ambiguity or strict constraints with task maturity and risk.</small>
+        </article>
+        <article>
+          <p><strong>Lunch Suggestion</strong></p>
+          <button type="submit" data-theme="dark" class="container-fluid pico-background-purple-700" data-tooltip="Will copy output to clipboard automatically"
+            make-persona-prebuilt-GC-Lunch-Suggestion="make-persona-prebuilt-GC-Lunch-Suggestion">
+            Use Persona
+          </button>
+          <small>Totally unbiased, accurate, and trustworthy team lunch place suggestor.</small>
+        </article>
+      </section>
+      <section id="preview">
+        <hgroup>
+          <h2>Build your own virtual collaborator</h2>
+          <p> Just answer some basic questions and you're set.</p>
+        </hgroup>
+        <form>
+          <fieldset id="form_container">
+          </fieldset>
+          <button type="submit" data-theme="dark" class="container-fluid pico-background-purple-700" data-tooltip="Will copy output to clipboard automatically"
+            make-persona="make-persona">
+            Make Persona
+          </button>
+          <small>
+              Don't forget that AI can be wrong. Always double check the outputs with a human. Trust but verify.
+          </small>
+        </form>
+      </section>
+      <section id="preview">
+        <hgroup>
+          <h2>Generated Persona</h2>
+          <p>Copy and paste this prompt into your favorite LLM</p>
+        </hgroup>
+        <textarea
+          name="persona-output"
+          placeholder="Awaiting Persona Details..."
+          aria-label="Persona Prompt"
+          style="font-family:'Courier New';font-size:8pt;"></textarea>
+      </section>
+    </main>
+    <script src="js/paulie-core.js"></script>
+    <script src="prompt-policy-templates/paulie-GC-generic.js"></script>
+    <script src="prompt-policy-templates/paulie-GC-EC-Analyst.js"></script>
+    <script src="prompt-policy-templates/paulie-GC-Lunch-Suggestion.js"></script>
+    <script>paulie.init();</script>
+  </body>
+</html>
