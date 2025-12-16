@@ -1,7 +1,6 @@
 // globals for templating/policies
 var g_templates = {};
-//var fieldArray = [];
-const template_prepend = `Hi, I have a detailed set of instructions for a persona I need you to adopt for the rest of this conversation. Please read the entire prompt and confirm the persona before starting any analysis. Here is the prompt:
+const g_template_prepend = `Hi, I have a detailed set of instructions for a persona I need you to adopt for the rest of this conversation. Please read the entire prompt and confirm the persona before starting any analysis. Here is the prompt:
 
 `;
 // end globals
@@ -20,9 +19,8 @@ async function copyTextToClipboard(textToCopy) {
   }
 }
 
-const formFieldTemplate = ({ uvar_label_text, uvar_id, uvar_placeholder, uvar_inputvalue, uvar_autocomplete }) => `
-<label>
-  ${uvar_label_text}
+const formFieldTemplate = ({ uvar_label_text, uvar_id, uvar_placeholder, uvar_inputvalue, uvar_autocomplete }) => 
+`<label>${uvar_label_text}
   <input
     name="${uvar_id}"
     placeholder="${uvar_placeholder}"
@@ -32,11 +30,11 @@ const formFieldTemplate = ({ uvar_label_text, uvar_id, uvar_placeholder, uvar_in
 </label>
 `;
 
-// Paulie Object
+// Paulie Definition
 const paulie = {
   uvars: {},
   localStorageKey: "uvars-",
-  promptpolicy: "paulie-GC-generic", //promptpolicy: "paulie-GC-EC-Analyst", //promptpolicy: "paulie-GC-Lunch-Suggestion",
+  promptpolicy: "paulie-GC-generic",
 
   init() {
     console.log("PAULIE - INIT - Initiation Started...");
@@ -79,12 +77,16 @@ const paulie = {
     }
     return gentemp; 
   },
+  focusOnCustomization() {
+    document.querySelector('#preview').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  },
   buttonsTarget_pGCG: "button[make-persona-prebuilt-GC-generic]",
   handleButtonClick_pGCG(event) {
     event.preventDefault();
     console.log("PAULIE - LOG - GC Generic Click");
     this.promptpolicy = "paulie-GC-generic";
     this.init();
+    this.focusOnCustomization();
   },
   buttonsTarget_pECA: "button[make-persona-prebuilt-EC-Analyst]",
   handleButtonClick_pECA(event) {
@@ -92,6 +94,7 @@ const paulie = {
     console.log("PAULIE - LOG - EC Analyst Click");
     this.promptpolicy = "paulie-GC-EC-Analyst";
     this.init();
+    this.focusOnCustomization();
   },
   buttonsTarget_pGLS: "button[make-persona-prebuilt-GC-Lunch-Suggestion]",
   handleButtonClick_pGLS(event) {
@@ -99,10 +102,35 @@ const paulie = {
     console.log("PAULIE - LOG - GC Lunch Suggest Click");
     this.promptpolicy = "paulie-GC-Lunch-Suggestion";
     this.init();
+    this.focusOnCustomization();
+  },
+  buttonsTarget_pGPS: "button[make-persona-prebuilt-GC-Procurement-Specialist]",
+  handleButtonClick_pGPS(event) {
+    event.preventDefault();
+    console.log("PAULIE - LOG - GC Procurement Specialist Click");
+    this.promptpolicy = "paulie-GC-Procurement-Specialist";
+    this.init();
+    this.focusOnCustomization();
+  },
+  buttonsTarget_pGSO: "button[make-persona-prebuilt-GC-Security-Officer]",
+  handleButtonClick_pGSO(event) {
+    event.preventDefault();
+    console.log("PAULIE - LOG - GC Security Officer Click");
+    this.promptpolicy = "paulie-GC-Security-Officer";
+    this.init();
+    this.focusOnCustomization();
+  },
+  buttonsTarget_pGCS: "button[make-persona-prebuilt-GC-Classification-Specialist]",
+  handleButtonClick_pGCS(event) {
+    event.preventDefault();
+    console.log("PAULIE - LOG - GC Classification Specialist Click");
+    this.promptpolicy = "paulie-GC-Classification-Specialist";
+    this.init();
+    this.focusOnCustomization();
   },
   initPrebuilts() {
     console.log("PAULIE - INIT - Init prebuilts.");
-
+    // GC Generic
     const buttons_pGCG = document.querySelectorAll(this.buttonsTarget_pGCG);
     if (!this._boundHandleButtonClick_pGCG) { // Store the bound handler once
       this._boundHandleButtonClick_pGCG = this.handleButtonClick_pGCG.bind(this);
@@ -111,7 +139,7 @@ const paulie = {
       button.removeEventListener("click", this._boundHandleButtonClick_pGCG);
       button.addEventListener("click",  this._boundHandleButtonClick_pGCG);
     });
-
+    // EC
     const buttons_pECA = document.querySelectorAll(this.buttonsTarget_pECA);
     if (!this._boundHandleButtonClick_pECA) { // Store the bound handler once
       this._boundHandleButtonClick_pECA = this.handleButtonClick_pECA.bind(this);
@@ -120,7 +148,7 @@ const paulie = {
       button.removeEventListener("click", this._boundHandleButtonClick_pECA);
       button.addEventListener("click", this._boundHandleButtonClick_pECA);
     });
-    
+    // Lunch Specialist
     const buttons_pGLS = document.querySelectorAll(this.buttonsTarget_pGLS);
     if (!this._boundHandleButtonClick_pGLS) { // Store the bound handler once
       this._boundHandleButtonClick_pGLS = this.handleButtonClick_pGLS.bind(this);
@@ -129,18 +157,45 @@ const paulie = {
       button.removeEventListener("click", this._boundHandleButtonClick_pGLS);
       button.addEventListener("click", this._boundHandleButtonClick_pGLS);
     });
+    // Procurement
+    const buttons_pGPS = document.querySelectorAll(this.buttonsTarget_pGPS);
+    if (!this._boundHandleButtonClick_pGPS) { // Store the bound handler once
+      this._boundHandleButtonClick_pGPS = this.handleButtonClick_pGPS.bind(this);
+    }
+    buttons_pGPS.forEach((button) => {
+      button.removeEventListener("click", this._boundHandleButtonClick_pGPS);
+      button.addEventListener("click", this._boundHandleButtonClick_pGPS);
+    });
+    // Security Officer
+    const buttons_pGSO = document.querySelectorAll(this.buttonsTarget_pGSO);
+    if (!this._boundHandleButtonClick_pGSO) { // Store the bound handler once
+      this._boundHandleButtonClick_pGSO = this.handleButtonClick_pGSO.bind(this);
+    }
+    buttons_pGSO.forEach((button) => {
+      button.removeEventListener("click", this._boundHandleButtonClick_pGSO);
+      button.addEventListener("click", this._boundHandleButtonClick_pGSO);
+    });
+    // Classifications
+    const buttons_pGCS = document.querySelectorAll(this.buttonsTarget_pGCS);
+    if (!this._boundHandleButtonClick_pGCS) { // Store the bound handler once
+      this._boundHandleButtonClick_pGCS = this.handleButtonClick_pGCS.bind(this);
+    }
+    buttons_pGCS.forEach((button) => {
+      button.removeEventListener("click", this._boundHandleButtonClick_pGCS);
+      button.addEventListener("click", this._boundHandleButtonClick_pGCS);
+    });
 
     console.log("PAULIE - INIT - Prebuilts Initialization complete.");  
   },
   buttonsTarget: "button[make-persona]",
   handleButtonClick_gen(event) {
     event.preventDefault();
-    // logic for mad libs person
+    // logic for mad libs persona
     const textarea = document.querySelector('textarea[name="persona-output"]');
     if (textarea) {
       console.log("PAULIE - CLICK - Setting content...");
       this.populate_uvars(); // setup user input as memory
-      textarea.value = template_prepend + this.generate_prompt_policy();
+      textarea.value = g_template_prepend + this.generate_prompt_policy();
       console.log("PAULIE - CLICK - Replacements complete.");
       copyTextToClipboard(textarea.value); // to clipboard
       this.uvarsToLocalStorage(); // to local storage

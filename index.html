@@ -6,7 +6,7 @@
     <meta name="color-scheme" content="light dark">
     <link rel="stylesheet" href="css/pico.min.css">
     <link rel="stylesheet" href="css/pico.colors.min.css">
-    <title>Paulie - Quick LLM Personas through Prompt Policies</title>
+    <title>Paulie - Quick LLM Prompt Policies</title>
   </head>
   <body>
     <header data-theme="dark" class="container-fluid pico-background-purple-700">
@@ -14,16 +14,20 @@
         <ul>
           <li>
             <strong>Paulie</strong>
-            <small>:: A quick LLM prompt policy for virtual brainstorming</small>
+            <small>:: Quick LLM smart persona generator for virtual brainstorming</small>
           </li>
         </ul>
       </nav>
     </header>
     <main class="container">
-      <section id="prebuilt" class="grid">
+      <hgroup>
+        <h2>Choose your base</h2>
+        <p>Start with the one closest to your needs and customize from there</p>
+      </hgroup>
+      <section id="prebuilt_r1" class="grid">
         <article>
           <p><strong>GC Generic</strong></p>
-          <button type="submit" data-theme="dark" class="container-fluid pico-background-purple-700" data-tooltip="Will copy output to clipboard automatically"
+          <button type="submit" data-theme="dark" class="container-fluid pico-background-purple-700" data-tooltip="Customize Persona Below..."
             make-persona-prebuilt-GC-generic="make-persona-prebuilt-GC-generic">
             Use Persona
           </button>
@@ -31,7 +35,7 @@
         </article>
         <article>
           <p><strong>Sr. EC Analyst</strong></p>
-          <button type="submit" data-theme="dark" class="container-fluid pico-background-purple-700" data-tooltip="Will copy output to clipboard automatically"
+          <button type="submit" data-theme="dark" class="container-fluid pico-background-purple-700" data-tooltip="Customize Persona Below..."
             make-persona-prebuilt-EC-Analyst="make-persona-prebuilt-EC-Analyst">
             Use Persona
           </button>
@@ -39,17 +43,43 @@
         </article>
         <article>
           <p><strong>Lunch Suggestion</strong></p>
-          <button type="submit" data-theme="dark" class="container-fluid pico-background-purple-700" data-tooltip="Will copy output to clipboard automatically"
+          <button type="submit" data-theme="dark" class="container-fluid pico-background-purple-700" data-tooltip="Customize Persona Below..."
             make-persona-prebuilt-GC-Lunch-Suggestion="make-persona-prebuilt-GC-Lunch-Suggestion">
             Use Persona
           </button>
           <small>Totally unbiased, accurate, and trustworthy team lunch place suggestor.</small>
         </article>
+        </section>
+        <section id="prebuilt_r2" class="grid">
+        <article>
+          <p><strong>Procurement Specialist</strong></p>
+          <button type="submit" data-theme="dark" class="container-fluid pico-background-purple-700" data-tooltip="Customize Persona Below..."
+            make-persona-prebuilt-GC-Procurement-Specialist="make-persona-prebuilt-GC-Procurement-Specialist">
+            Use Persona
+          </button>
+          <small>Procurement Officer who specializes in helping answer procurement questions.</small>
+        </article>
+        <article>
+          <p><strong>Security Officer</strong></p>
+          <button type="submit" data-theme="dark" class="container-fluid pico-background-purple-700" data-tooltip="Customize Persona Below..."
+            make-persona-prebuilt-GC-Security-Officer="make-persona-prebuilt-GC-Security-Officer">
+            Use Persona
+          </button>
+          <small>Security Officer who helps guide folks through the security controls they typically need to address.</small>
+        </article>
+        <article>
+          <p><strong>Classification Specialist</strong></p>
+          <button type="submit" data-theme="dark" class="container-fluid pico-background-purple-700" data-tooltip="Customize Persona Below..."
+            make-persona-prebuilt-GC-Classification-Specialist="make-persona-prebuilt-GC-Classification-Specialist">
+            Use Persona
+          </button>
+          <small>A Classification specialist who is able to help assess and grade job descriptions into Group and Levels suggestions.</small>
+        </article>
       </section>
       <section id="preview">
         <hgroup>
-          <h2>Build your own virtual collaborator</h2>
-          <p> Just answer some basic questions and you're set.</p>
+          <h2>Customize your virtual collaborator</h2>
+          <p>Just answer some basic questions and you're set, hit Make Persona when done</p>
         </hgroup>
         <form>
           <fieldset id="form_container">
@@ -58,16 +88,18 @@
             make-persona="make-persona">
             Make Persona
           </button>
-          <small>
-              Don't forget that AI can be wrong. Always double check the outputs with a human. Trust but verify.
-          </small>
         </form>
       </section>
-      <section id="preview">
+      <section id="gen_preview">
         <hgroup>
           <h2>Generated Persona</h2>
           <p>Copy and paste this prompt into your favorite LLM</p>
         </hgroup>
+        <mark>
+          <small>
+            Don't forget that AI can be wrong. Always double check the outputs with a human. Trust but verify.
+          </small>
+        </mark>
         <textarea
           name="persona-output"
           placeholder="Awaiting Persona Details..."
@@ -79,6 +111,9 @@
     <script src="prompt-policy-templates/paulie-GC-generic.js"></script>
     <script src="prompt-policy-templates/paulie-GC-EC-Analyst.js"></script>
     <script src="prompt-policy-templates/paulie-GC-Lunch-Suggestion.js"></script>
+    <script src="prompt-policy-templates/paulie-GC-Procurement-Specialist.js"></script>
+    <script src="prompt-policy-templates/paulie-GC-Security-Officer.js"></script>
+    <script src="prompt-policy-templates/paulie-GC-Classification-Specialist.js"></script>
     <script>paulie.init();</script>
   </body>
 </html>
