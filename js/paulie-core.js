@@ -128,6 +128,14 @@ const paulie = {
     this.init();
     this.focusOnCustomization();
   },
+  buttonsTarget_pLDS: "button[make-persona-prebuilt-GC-Learning-Design-Support]",
+  handleButtonClick_pLDS(event) {
+    event.preventDefault();
+    console.log("PAULIE - LOG - GC Learning Design Click");
+    this.promptpolicy = "paulie-GC-Learning-Design-Support";
+    this.init();
+    this.focusOnCustomization();
+  },
   initPrebuilts() {
     console.log("PAULIE - INIT - Init prebuilts.");
     // GC Generic
@@ -184,7 +192,15 @@ const paulie = {
       button.removeEventListener("click", this._boundHandleButtonClick_pGCS);
       button.addEventListener("click", this._boundHandleButtonClick_pGCS);
     });
-
+    // Learning
+    const buttons_pLDS = document.querySelectorAll(this.buttonsTarget_pLDS);
+    if (!this._boundHandleButtonClick_pLDS) { // Store the bound handler once
+      this._boundHandleButtonClick_pLDS = this.handleButtonClick_pLDS.bind(this);
+    }
+    buttons_pLDS.forEach((button) => {
+      button.removeEventListener("click", this._boundHandleButtonClick_pLDS);
+      button.addEventListener("click", this._boundHandleButtonClick_pLDS);
+    });
     console.log("PAULIE - INIT - Prebuilts Initialization complete.");  
   },
   buttonsTarget: "button[make-persona]",
