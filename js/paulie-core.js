@@ -80,131 +80,29 @@ const paulie = {
   focusOnCustomization() {
     document.querySelector('#preview').scrollIntoView({ behavior: 'smooth', block: 'start' });
   },
-  buttonsTarget_pGCG: "button[make-persona-prebuilt-GC-generic]",
-  handleButtonClick_pGCG(event) {
+  handlePrebuiltDelegate(event) {
+    const button = event.target.closest('[data-promptpolicy]');
+    if (!button) return;
+
     event.preventDefault();
-    console.log("PAULIE - LOG - GC Generic Click");
-    this.promptpolicy = "paulie-GC-generic";
-    this.init();
-    this.focusOnCustomization();
-  },
-  buttonsTarget_pECA: "button[make-persona-prebuilt-EC-Analyst]",
-  handleButtonClick_pECA(event) {
-    event.preventDefault();
-    console.log("PAULIE - LOG - EC Analyst Click");
-    this.promptpolicy = "paulie-GC-EC-Analyst";
-    this.init();
-    this.focusOnCustomization();
-  },
-  buttonsTarget_pGLS: "button[make-persona-prebuilt-GC-Lunch-Suggestion]",
-  handleButtonClick_pGLS(event) {
-    event.preventDefault();
-    console.log("PAULIE - LOG - GC Lunch Suggest Click");
-    this.promptpolicy = "paulie-GC-Lunch-Suggestion";
-    this.init();
-    this.focusOnCustomization();
-  },
-  buttonsTarget_pGPS: "button[make-persona-prebuilt-GC-Procurement-Specialist]",
-  handleButtonClick_pGPS(event) {
-    event.preventDefault();
-    console.log("PAULIE - LOG - GC Procurement Specialist Click");
-    this.promptpolicy = "paulie-GC-Procurement-Specialist";
-    this.init();
-    this.focusOnCustomization();
-  },
-  buttonsTarget_pGSO: "button[make-persona-prebuilt-GC-Security-Officer]",
-  handleButtonClick_pGSO(event) {
-    event.preventDefault();
-    console.log("PAULIE - LOG - GC Security Officer Click");
-    this.promptpolicy = "paulie-GC-Security-Officer";
-    this.init();
-    this.focusOnCustomization();
-  },
-  buttonsTarget_pGCS: "button[make-persona-prebuilt-GC-Classification-Specialist]",
-  handleButtonClick_pGCS(event) {
-    event.preventDefault();
-    console.log("PAULIE - LOG - GC Classification Specialist Click");
-    this.promptpolicy = "paulie-GC-Classification-Specialist";
-    this.init();
-    this.focusOnCustomization();
-  },
-  buttonsTarget_pLDS: "button[make-persona-prebuilt-GC-Learning-Design-Support]",
-  handleButtonClick_pLDS(event) {
-    event.preventDefault();
-    console.log("PAULIE - LOG - GC Learning Design Click");
-    this.promptpolicy = "paulie-GC-Learning-Design-Support";
+
+    console.log(`PAULIE - LOG - ${button.dataset.promptpolicy}`);
+    this.promptpolicy = button.dataset.promptpolicy;
     this.init();
     this.focusOnCustomization();
   },
   initPrebuilts() {
     console.log("PAULIE - INIT - Init prebuilts.");
-    // GC Generic
-    const buttons_pGCG = document.querySelectorAll(this.buttonsTarget_pGCG);
-    if (!this._boundHandleButtonClick_pGCG) { // Store the bound handler once
-      this._boundHandleButtonClick_pGCG = this.handleButtonClick_pGCG.bind(this);
+
+    if (!this._boundPrebuiltDelegate) {
+      this._boundPrebuiltDelegate = this.handlePrebuiltDelegate.bind(this);
+      document.addEventListener("click", this._boundPrebuiltDelegate);
     }
-    buttons_pGCG.forEach((button) => {
-      button.removeEventListener("click", this._boundHandleButtonClick_pGCG);
-      button.addEventListener("click",  this._boundHandleButtonClick_pGCG);
-    });
-    // EC
-    const buttons_pECA = document.querySelectorAll(this.buttonsTarget_pECA);
-    if (!this._boundHandleButtonClick_pECA) { // Store the bound handler once
-      this._boundHandleButtonClick_pECA = this.handleButtonClick_pECA.bind(this);
-    }
-    buttons_pECA.forEach((button) => {
-      button.removeEventListener("click", this._boundHandleButtonClick_pECA);
-      button.addEventListener("click", this._boundHandleButtonClick_pECA);
-    });
-    // Lunch Specialist
-    const buttons_pGLS = document.querySelectorAll(this.buttonsTarget_pGLS);
-    if (!this._boundHandleButtonClick_pGLS) { // Store the bound handler once
-      this._boundHandleButtonClick_pGLS = this.handleButtonClick_pGLS.bind(this);
-    }
-    buttons_pGLS.forEach((button) => {
-      button.removeEventListener("click", this._boundHandleButtonClick_pGLS);
-      button.addEventListener("click", this._boundHandleButtonClick_pGLS);
-    });
-    // Procurement
-    const buttons_pGPS = document.querySelectorAll(this.buttonsTarget_pGPS);
-    if (!this._boundHandleButtonClick_pGPS) { // Store the bound handler once
-      this._boundHandleButtonClick_pGPS = this.handleButtonClick_pGPS.bind(this);
-    }
-    buttons_pGPS.forEach((button) => {
-      button.removeEventListener("click", this._boundHandleButtonClick_pGPS);
-      button.addEventListener("click", this._boundHandleButtonClick_pGPS);
-    });
-    // Security Officer
-    const buttons_pGSO = document.querySelectorAll(this.buttonsTarget_pGSO);
-    if (!this._boundHandleButtonClick_pGSO) { // Store the bound handler once
-      this._boundHandleButtonClick_pGSO = this.handleButtonClick_pGSO.bind(this);
-    }
-    buttons_pGSO.forEach((button) => {
-      button.removeEventListener("click", this._boundHandleButtonClick_pGSO);
-      button.addEventListener("click", this._boundHandleButtonClick_pGSO);
-    });
-    // Classifications
-    const buttons_pGCS = document.querySelectorAll(this.buttonsTarget_pGCS);
-    if (!this._boundHandleButtonClick_pGCS) { // Store the bound handler once
-      this._boundHandleButtonClick_pGCS = this.handleButtonClick_pGCS.bind(this);
-    }
-    buttons_pGCS.forEach((button) => {
-      button.removeEventListener("click", this._boundHandleButtonClick_pGCS);
-      button.addEventListener("click", this._boundHandleButtonClick_pGCS);
-    });
-    // Learning
-    const buttons_pLDS = document.querySelectorAll(this.buttonsTarget_pLDS);
-    if (!this._boundHandleButtonClick_pLDS) { // Store the bound handler once
-      this._boundHandleButtonClick_pLDS = this.handleButtonClick_pLDS.bind(this);
-    }
-    buttons_pLDS.forEach((button) => {
-      button.removeEventListener("click", this._boundHandleButtonClick_pLDS);
-      button.addEventListener("click", this._boundHandleButtonClick_pLDS);
-    });
+    
     console.log("PAULIE - INIT - Prebuilts Initialization complete.");  
   },
   buttonsTarget: "button[make-persona]",
-  handleButtonClick_gen(event) {
+  handleMakePersonaClick(event) {
     event.preventDefault();
     // logic for mad libs persona
     const textarea = document.querySelector('textarea[name="persona-output"]');
@@ -222,12 +120,12 @@ const paulie = {
   initActions() {
     console.log("PAULIE - INIT - Init Actions.");
     const buttons = document.querySelectorAll(this.buttonsTarget);
-    if (!this._boundHandleButtonClick_gen) { // Store the bound handler once
-      this._boundHandleButtonClick_gen = this.handleButtonClick_gen.bind(this);
+    if (!this._boundHandleMakePersonaClick) { // Store the bound handler once
+      this._boundHandleMakePersonaClick = this.handleMakePersonaClick.bind(this);
     }
     buttons.forEach((button) => {
-      button.removeEventListener("click", this._boundHandleButtonClick_gen);
-      button.addEventListener("click", this._boundHandleButtonClick_gen);
+      button.removeEventListener("click", this._boundHandleMakePersonaClick);
+      button.addEventListener("click", this._boundHandleMakePersonaClick);
     });
 
     console.log("PAULIE - INIT - Initialization complete.");
