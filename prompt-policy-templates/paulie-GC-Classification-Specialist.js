@@ -1,4 +1,5 @@
-g_templates["paulie-GC-Classification-Specialist"] = {
+export default {
+id: "paulie-GC-Classification-Specialist",
 controls: [ // define the user input sections
 { 
     keytag: "$uvar_analytical_strict",  uvar_label_text: "Analytical Strictness (LOW / MEDIUM / HIGH)", 

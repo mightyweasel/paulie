@@ -1,4 +1,5 @@
-g_templates["paulie-GC-Procurement-Specialist"] = {
+export default {
+id: "paulie-GC-Procurement-Specialist",
 controls: [ // define the user input sections
 { 
     keytag: "$uvar_procedural_posture",  uvar_label_text: "Procedural Posture (LOW / MEDIUM / HIGH)", 

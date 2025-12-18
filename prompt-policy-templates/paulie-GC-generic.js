@@ -1,4 +1,5 @@
-g_templates["paulie-GC-generic"] = {
+export default {
+id: "paulie-GC-generic",
 controls: [ // define the user input sections
 { 
     keytag: "$uvar_role_title",  uvar_label_text: "Virtual collaborator is a...", 
