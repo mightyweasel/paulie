@@ -1,4 +1,5 @@
-g_templates["paulie-GC-Security-Officer"] = {
+export default {
+id: "paulie-GC-Security-Officer",
 controls: [ // define the user input sections
 { 
     keytag: "$uvar_risk_sensitivity",  uvar_label_text: "Risk Sensitivity (LOW / MEDIUM / HIGH)", 

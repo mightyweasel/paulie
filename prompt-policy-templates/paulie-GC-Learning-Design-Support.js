@@ -1,4 +1,5 @@
-g_templates["paulie-GC-Learning-Design-Support"] = {
+export default {
+id: "paulie-GC-Learning-Design-Support",
 controls: [ // define the user input sections
 { 
     keytag: "$uvar_learn_aud",  uvar_label_text: "Training Audience", 
