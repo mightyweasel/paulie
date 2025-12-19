@@ -2,19 +2,19 @@ export default {
 id: "paulie-GC-Procurement-Specialist",
 controls: [ // define the user input sections
 { 
-    keytag: "$uvar_procedural_posture",  uvar_label_text: "Procedural Posture (LOW / MEDIUM / HIGH)", 
-    uvar_id: "uvar_procedural_posture", uvar_placeholder: "MEDIUM", 
-    uvar_autocomplete: "uvar-procedural-posture", uvar_inputvalue: "MEDIUM" 
+  uvar_handle: "uvar-procedural-posture", 
+  uvar_ilabel: "Procedural Posture (LOW / MEDIUM / HIGH)", 
+  uvar_ivalue: "MEDIUM"
 },
 { 
-    keytag: "$uvar_analytical_breadth",  uvar_label_text: "Analytical Breadth (EXPLORATORY / BALANCED / CONSERVATIVE)", 
-    uvar_id: "uvar_analytical_breadth", uvar_placeholder: "BALANCED", 
-    uvar_autocomplete: "uvar-analytical-breadth", uvar_inputvalue: "BALANCED" 
+  uvar_handle: "uvar-analytical-breadth", 
+  uvar_ilabel: "Analytical Breadth (EXPLORATORY / BALANCED / CONSERVATIVE)", 
+  uvar_ivalue: "BALANCED"
 },
 { 
-    keytag: "$uvar_clarification_req",  uvar_label_text: "Clarification Requirement (LOW / MEDIUM / HIGH)", 
-    uvar_id: "uvar_clarification_req", uvar_placeholder: "MEDIUM", 
-    uvar_autocomplete: "uvar-clarification-req", uvar_inputvalue: "MEDIUM" 
+  uvar_handle: "uvar-clarification-req", 
+  uvar_ilabel: "Clarification Requirement (LOW / MEDIUM / HIGH)", 
+  uvar_ivalue: "MEDIUM"
 }
 ], // define the prompt policy and setup the mad libs locations.
 prompt:  `# SYSTEM PROMPT — GOVERNMENT OF CANADA PROCUREMENT SPECIALIST

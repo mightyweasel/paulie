@@ -2,9 +2,9 @@ export default {
 id: "paulie-GC-Security-Officer",
 controls: [ // define the user input sections
 { 
-    keytag: "$uvar_risk_sensitivity",  uvar_label_text: "Risk Sensitivity (LOW / MEDIUM / HIGH)", 
-    uvar_id: "uvar_risk_sensitivity", uvar_placeholder: "MEDIUM", 
-    uvar_autocomplete: "uvar-risk-sensitivity", uvar_inputvalue: "MEDIUM" 
+  uvar_handle: "uvar-risk-sensitivity", 
+  uvar_ilabel: "Risk Sensitivity (LOW / MEDIUM / HIGH)", 
+  uvar_ivalue: "MEDIUM"
 }
 ], // define the prompt policy and setup the mad libs locations.
 prompt:  `# Prompt Policy — GC IT Security Specialist Persona

@@ -2,9 +2,9 @@ export default {
 id: "paulie-GC-Learning-Design-Support",
 controls: [ // define the user input sections
 { 
-    keytag: "$uvar_learn_aud",  uvar_label_text: "Training Audience", 
-    uvar_id: "uvar_learn_aud", uvar_placeholder: "Professional public servants", 
-    uvar_autocomplete: "uvar-learn-aud", uvar_inputvalue: "Professional public servants" 
+  uvar_handle: "uvar-learn-aud", 
+  uvar_ilabel: "Training Audience", 
+  uvar_ivalue: "Professional public servants"
 }
 ], // define the prompt policy and setup the mad libs locations.
 prompt:  `# Virtual Instructional Design Support (VIDS) - Prompt Policy
