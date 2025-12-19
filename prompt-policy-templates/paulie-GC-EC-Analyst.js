@@ -2,54 +2,54 @@ export default {
 id: "paulie-GC-EC-Analyst",
 controls: [ // define the user input sections
 { 
-    keytag: "$uvar_rc",  uvar_label_text: "Virtual collaborator is a...", 
-    uvar_id: "uvar_rc", uvar_placeholder: "EC-07 Policy Analyst", 
-    uvar_autocomplete: "uvar-rc", uvar_inputvalue: "EC-07 Policy Analyst" 
+  uvar_handle: "uvar-rc", 
+  uvar_ilabel: "Virtual collaborator is a...", 
+  uvar_ivalue: "EC-07 Policy Analyst"
+},
+{
+  uvar_handle: "uvar-dpt", 
+  uvar_ilabel: "Organization / Branch...", 
+  uvar_ivalue: "Treasury Board, ESDC, OCHRO, PCO"
 },
 { 
-    keytag: "$uvar_dpt",  uvar_label_text: "Organization / Branch...", 
-    uvar_id: "uvar_dpt", uvar_placeholder: "Treasury Board, ESDC, OCHRO, PCO", 
-    uvar_autocomplete: "uvar-dpt", uvar_inputvalue: "Treasury Board, ESDC, OCHRO, PCO" 
+  uvar_handle: "uvar-pold", 
+  uvar_ilabel: "Policy Domain", 
+  uvar_ivalue: "Transport, Environment, Digital, Finance"
 },
 { 
-    keytag: "$uvar_pold",  uvar_label_text: "Policy Domain", 
-    uvar_id: "uvar_pold", uvar_placeholder: "Transport, Environment, Digital, Finance", 
-    uvar_autocomplete: "uvar-pold", uvar_inputvalue: "Transport, Environment, Digital, Finance" 
+  uvar_handle: "uvar-aud", 
+  uvar_ilabel: "Audience", 
+  uvar_ivalue: "Director, ADM, Internal Working Group"
+},
+{
+  uvar_handle: "uvar-tt", 
+  uvar_ilabel: "Task Type", 
+  uvar_ivalue: "Early brainstorming / Draft briefing note / Options analysis"
+},
+{
+  uvar_handle: "uvar-th", 
+  uvar_ilabel: "Time Horizon [SHORT / MEDIUM / LONG TERM]", 
+  uvar_ivalue: "MEDIUM"
+},
+{
+  uvar_handle: "uvar-rs", 
+  uvar_ilabel: "Risk Sensitivity [LOW / MEDIUM / HIGH]", 
+  uvar_ivalue: "MEDIUM" 
 },
 { 
-    keytag: "$uvar_aud",  uvar_label_text: "Audience", 
-    uvar_id: "uvar_aud", uvar_placeholder: "Director, ADM, Internal Working Group", 
-    uvar_autocomplete: "uvar-aud", uvar_inputvalue: "Director, ADM, Internal Working Group" 
+  uvar_handle: "uvar-ps", 
+  uvar_ilabel: "Procedural Strictness [LOW / MEDIUM / HIGH]", 
+  uvar_ivalue: "MEDIUM"
 },
 { 
-    keytag: "$uvar_tt",  uvar_label_text: "Task Type", 
-    uvar_id: "uvar_tt", uvar_placeholder: "Early brainstorming / Draft briefing note / Options analysis", 
-    uvar_autocomplete: "uvar-tt", uvar_inputvalue: "Early brainstorming / Draft briefing note / Options analysis" 
+  uvar_handle: "uvar-evc", 
+  uvar_ilabel: "Exploratory vs. Conservative [EXPLORATORY / BALANCED / CONSERVATIVE]", 
+  uvar_ivalue: "BALANCED"
 },
 { 
-    keytag: "$uvar_th",  uvar_label_text: "Time Horizon [SHORT / MEDIUM / LONG TERM]", 
-    uvar_id: "uvar_th", uvar_placeholder: "MEDIUM", 
-    uvar_autocomplete: "uvar-th", uvar_inputvalue: "MEDIUM" 
-},
-{ 
-    keytag: "$uvar_rs",  uvar_label_text: "Risk Sensitivity [LOW / MEDIUM / HIGH]", 
-    uvar_id: "uvar_rs", uvar_placeholder: "MEDIUM", 
-    uvar_autocomplete: "uvar-rs", uvar_inputvalue: "MEDIUM" 
-},
-{ 
-    keytag: "$uvar_ps",  uvar_label_text: "Procedural Strictness [LOW / MEDIUM / HIGH]", 
-    uvar_id: "uvar_ps", uvar_placeholder: "MEDIUM", 
-    uvar_autocomplete: "uvar-ps", uvar_inputvalue: "MEDIUM" 
-},
-{ 
-    keytag: "$uvar_evc",  uvar_label_text: "Exploratory vs. Conservative [EXPLORATORY / BALANCED / CONSERVATIVE]", 
-    uvar_id: "uvar_evc", uvar_placeholder: "BALANCED", 
-    uvar_autocomplete: "uvar-evc", uvar_inputvalue: "BALANCED" 
-},
-{ 
-    keytag: "$uvar_ct",  uvar_label_text: "Clarification Threshold [ASK EARLY / PROCEED WITH CAVEATS]", 
-    uvar_id: "uvar_ct", uvar_placeholder: "ASK EARLY", 
-    uvar_autocomplete: "uvar-ct", uvar_inputvalue: "ASK EARLY" 
+  uvar_handle: "uvar-ct", 
+  uvar_ilabel: "Clarification Threshold [ASK EARLY / PROCEED WITH CAVEATS]", 
+  uvar_ivalue: "ASK EARLY" 
 }
 ], // define the prompt policy and setup the mad libs locations.
 prompt:  `# GC EC SUPER-PROMPT POLICY

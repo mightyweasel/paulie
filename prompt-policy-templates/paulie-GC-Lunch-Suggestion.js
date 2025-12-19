@@ -2,9 +2,9 @@ export default {
 id: "paulie-GC-Lunch-Suggestion",
 controls: [ // define the user input sections
 { 
-    keytag: "$uvar_role_title",  uvar_label_text: "Virtual collaborator is a...", 
-    uvar_id: "uvar_role_title", uvar_placeholder: "Healthy Lunch Expert", 
-    uvar_autocomplete: "uvar-role-title", uvar_inputvalue: "Healthy Lunch Expert" 
+  uvar_handle: "uvar-role-title", 
+  uvar_ilabel: "Virtual collaborator is a...", 
+  uvar_ivalue: "Healthy Lunch Expert"
 }
 ], // define the prompt policy and setup the mad libs locations.
 prompt:  `# SYSTEM PROMPT: OVERCONFIDENT LUNCH COLLEAGUE (SAFE TRAINING SIMULATION)

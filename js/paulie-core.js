@@ -45,21 +45,25 @@ const paulie = {
     this.componentInit();
     this.uvars = this.uvarsFromLocalStorage();
     for(const field of this.g_templates[ this.promptpolicy ].controls) {
-      document.querySelector('input[name="'+field["uvar_id"]+'"]').value = this.uvars[ field["keytag"] ];
+      let uid = field["uvar_handle"].replaceAll("-","_");
+      let ktg = "$" + field["uvar_handle"].replaceAll("-","_");
+      
+      document.querySelector('input[name="'+uid+'"]').value = this.uvars[ ktg ];
     }
     this.initPrebuilts();
     this.initActions();
   },
-  formFieldTemplate({ uvar_label_text, uvar_id, uvar_placeholder, uvar_inputvalue, uvar_autocomplete }) {
-    return `<label>${uvar_label_text}<input name="${uvar_id}" placeholder="${uvar_placeholder}" value="${uvar_inputvalue}" autocomplete="${uvar_autocomplete}"/></label>\n`;
+  htmlFormFieldTemplate({ uvar_handle, uvar_ilabel, uvar_ivalue }) {
+    return `<label>${uvar_ilabel}<input name="${uvar_handle.replaceAll("-","_")}" placeholder="${uvar_ivalue}" value="${uvar_ivalue}" autocomplete="${uvar_handle}"/></label>\n`;
   },
   componentInit() {
     console.log("PAULIE - INIT - Building html forms...");
     let html_collector = "";
     if(this.g_templates[  this.promptpolicy  ].controls) {
       for(const field of this.g_templates[  this.promptpolicy  ].controls) { 
-        html_collector += this.formFieldTemplate(field); 
-        this.uvars[field["keytag"]] = field["uvar_inputvalue"]; 
+        html_collector += this.htmlFormFieldTemplate(field); 
+        let ktg = "$" + field["uvar_handle"].replaceAll("-","_");
+        this.uvars[ ktg ] = field["uvar_ivalue"]; 
       }
     }
     document.querySelector('fieldset[id="form_container"]').innerHTML = html_collector;
@@ -76,13 +80,16 @@ const paulie = {
   },
   populateUvars() {
     for(const field of this.g_templates[ this.promptpolicy ].controls) {
-      this.uvars[ field["keytag"] ] = document.querySelector('input[name="'+field["uvar_id"]+'"]').value;
+      let uid = field["uvar_handle"].replaceAll("-","_");
+      let ktg = "$" + field["uvar_handle"].replaceAll("-","_");
+      this.uvars[ ktg ] = document.querySelector('input[name="'+uid+'"]').value;
     }
   },
   generatePromptPolicy() {
     let gentemp = this.g_templates[ this.promptpolicy ].prompt;
     for(const field of this.g_templates[ this.promptpolicy ].controls) {
-      gentemp = gentemp.replaceAll( field["keytag"] , this.uvars[ field["keytag"] ] );
+      let ktg = "$" + field["uvar_handle"].replaceAll("-","_");
+      gentemp = gentemp.replaceAll( ktg , this.uvars[ ktg ] );
     }
     return gentemp; 
   },

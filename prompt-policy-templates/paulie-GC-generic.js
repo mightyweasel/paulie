@@ -2,29 +2,29 @@ export default {
 id: "paulie-GC-generic",
 controls: [ // define the user input sections
 { 
-    keytag: "$uvar_role_title",  uvar_label_text: "Virtual collaborator is a...", 
-    uvar_id: "uvar_role_title", uvar_placeholder: "mid-to-senior level Policy Analyst", 
-    uvar_autocomplete: "uvar-role-title", uvar_inputvalue: "mid-to-senior level Policy Analyst" 
+  uvar_handle: "uvar-role-title", 
+  uvar_ilabel: "Virtual collaborator is a...", 
+  uvar_ivalue: "Mid-to-senior level Policy Analyst"
 },
 { 
-    keytag: "$uvar_role_dept", uvar_label_text: "From a department like...", 
-    uvar_id: "uvar_role_dept", uvar_placeholder: "ESDC, PCO, TBS", 
-    uvar_autocomplete: "uvar-role-dept", uvar_inputvalue: "ESDC, PCO, TBS"
+  uvar_handle: "uvar-role-dept", 
+  uvar_ilabel: "From a department like...", 
+  uvar_ivalue: "ESDC, PCO, TBS"
 },
 { 
-    keytag: "$uvar_goal_keyconsiderations", uvar_label_text: "When answering they cover...", 
-    uvar_id: "uvar_goal_keyconsiderations", uvar_placeholder: "GBA+, Privacy Act compliance, Interdepartmental Governance", 
-    uvar_autocomplete: "uvar-goal-keyconsiderations", uvar_inputvalue: "GBA+, Privacy Act compliance, Interdepartmental Governance"    
+  uvar_handle: "uvar-goal-keyconsiderations", 
+  uvar_ilabel: "When answering they cover...", 
+  uvar_ivalue: "GBA Plus, Privacy Act compliance, Interdepartmental Governance"
 },
 { 
-    keytag: "$uvar_role_coreconcepts", uvar_label_text: "And possess a deep, working knowledge of...", 
-    uvar_id: "uvar_role_coreconcepts", uvar_placeholder: "Results and Delivery (measurable outcomes), GBA Plus (Gender-Based Analysis Plus), Reconciliation (impacts on Indigenous Peoples), and Fiscal Responsibility/Risk Assessment.", 
-    uvar_autocomplete: "uvar-role-coreconcepts", uvar_inputvalue: "Results and Delivery (measurable outcomes), GBA Plus (Gender-Based Analysis Plus), Reconciliation (impacts on Indigenous Peoples), and Fiscal Responsibility/Risk Assessment."
+  uvar_handle: "uvar-role-coreconcepts", 
+  uvar_ilabel: "And possess a deep, working knowledge of...", 
+  uvar_ivalue: "Results and Delivery (measurable outcomes), GBA Plus (Gender-Based Analysis Plus), Reconciliation (impacts on Indigenous Peoples), and Fiscal Responsibility/Risk Assessment."
 },
 { 
-    keytag: "$uvar_goal_targetaudience", uvar_label_text: "The audience of their output is...", 
-    uvar_id: "uvar_goal_targetaudience", uvar_placeholder: "EX-01 to DM level audiences", 
-    uvar_autocomplete: "uvar-goal-targetaudience", uvar_inputvalue: "EX-01 to DM level audiences"   
+  uvar_handle: "uvar-goal-targetaudience", 
+  uvar_ilabel: "When answering they cover...", 
+  uvar_ivalue: "GBA Plus, Privacy Act compliance, Interdepartmental Governance"  
 }
 ], // define the prompt policy and setup the mad libs locations.
 prompt:  `# 🏛️ Policy Analyst Example (Ultimate V4.0 Template)

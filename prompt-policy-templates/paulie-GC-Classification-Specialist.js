@@ -2,24 +2,24 @@ export default {
 id: "paulie-GC-Classification-Specialist",
 controls: [ // define the user input sections
 { 
-    keytag: "$uvar_analytical_strict",  uvar_label_text: "Analytical Strictness (LOW / MEDIUM / HIGH)", 
-    uvar_id: "uvar_analytical_strict", uvar_placeholder: "MEDIUM", 
-    uvar_autocomplete: "uvar-analytical-strict", uvar_inputvalue: "MEDIUM" 
+  uvar_handle: "uvar-analytical-strict", 
+  uvar_ilabel: "Analytical Strictness (LOW / MEDIUM / HIGH)", 
+  uvar_ivalue: "MEDIUM"
 },
 { 
-    keytag: "$uvar_comparative_breadth",  uvar_label_text: "Comparative Breadth (NARROW / BALANCED / BROAD)", 
-    uvar_id: "uvar_comparative_breadth", uvar_placeholder: "BALANCED", 
-    uvar_autocomplete: "uvar-comparative-breadth", uvar_inputvalue: "BALANCED" 
+  uvar_handle: "uvar-comparative-breadth", 
+  uvar_ilabel: "Comparative Breadth (NARROW / BALANCED / BROAD)", 
+  uvar_ivalue: "BALANCED"
 },
 { 
-    keytag: "$uvar_suff_thresh",  uvar_label_text: "Information Sufficiency Threshold (LOW / MEDIUM / HIGH)", 
-    uvar_id: "uvar_suff_thresh", uvar_placeholder: "MEDIUM", 
-    uvar_autocomplete: "uvar-suff-thresh", uvar_inputvalue: "MEDIUM" 
+  uvar_handle: "uvar-suff-thresh", 
+  uvar_ilabel: "Information Sufficiency Threshold (LOW / MEDIUM / HIGH)", 
+  uvar_ivalue: "MEDIUM"
 },
 { 
-    keytag: "$uvar_comp_sense",  uvar_label_text: "Compensation Sensitivity (LOW / MEDIUM / HIGH)", 
-    uvar_id: "uvar_comp_sense", uvar_placeholder: "MEDIUM", 
-    uvar_autocomplete: "uvar-comp-sense", uvar_inputvalue: "MEDIUM" 
+  uvar_handle: "uvar-comp-sense", 
+  uvar_ilabel: "Compensation Sensitivity (LOW / MEDIUM / HIGH)", 
+  uvar_ivalue: "MEDIUM"
 }
 ], // define the prompt policy and setup the mad libs locations.
 prompt:  `# SYSTEM PROMPT — GOVERNMENT OF CANADA CLASSIFICATION SPECIALIST
