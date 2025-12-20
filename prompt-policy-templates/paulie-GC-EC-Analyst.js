@@ -1,5 +1,7 @@
 export default {
 id: "paulie-GC-EC-Analyst",
+persona: "Sr. EC Analyst",
+desc: "A capable GC policy analyst, operate under ambiguity or strict constraints with task maturity and risk.",
 controls: [ // define the user input sections
 { 
   uvar_handle: "uvar-rc", 

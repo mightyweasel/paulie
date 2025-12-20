@@ -1,5 +1,7 @@
 export default {
 id: "paulie-GC-Security-Officer",
+persona: "IT Security Officer",
+desc: "IT Security Officer who helps guide folks through the security controls they typically need to address.",
 controls: [ // define the user input sections
 { 
   uvar_handle: "uvar-risk-sensitivity", 

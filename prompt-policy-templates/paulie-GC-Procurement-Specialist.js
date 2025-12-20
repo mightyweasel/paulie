@@ -1,5 +1,7 @@
 export default {
 id: "paulie-GC-Procurement-Specialist",
+persona: "Procurement Specialist",
+desc: "Procurement Officer who specializes in helping answer procurement questions.",
 controls: [ // define the user input sections
 { 
   uvar_handle: "uvar-procedural-posture", 
