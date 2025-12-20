@@ -1,5 +1,7 @@
 export default {
 id: "paulie-GC-generic",
+persona: "GC Generic",
+desc: "A generic Prompt Policy that provides general GC brainstorming support.",
 controls: [ // define the user input sections
 { 
   uvar_handle: "uvar-role-title", 

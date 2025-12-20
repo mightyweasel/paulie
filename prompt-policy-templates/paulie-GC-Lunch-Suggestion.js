@@ -1,5 +1,7 @@
 export default {
 id: "paulie-GC-Lunch-Suggestion",
+persona: "Lunch Suggestion",
+desc: "Totally unbiased, accurate, and trustworthy team lunch place suggestor.",
 controls: [ // define the user input sections
 { 
   uvar_handle: "uvar-role-title", 

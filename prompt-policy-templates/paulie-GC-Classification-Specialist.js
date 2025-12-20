@@ -1,5 +1,7 @@
 export default {
 id: "paulie-GC-Classification-Specialist",
+persona: "Classification Specialist",
+desc: "A Classification specialist who is able to help assess and grade job descriptions into Group and Levels suggestions.",
 controls: [ // define the user input sections
 { 
   uvar_handle: "uvar-analytical-strict", 

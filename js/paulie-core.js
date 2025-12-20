@@ -1,114 +1,147 @@
-// Paulie Definition
+import g_policy_registry from './../prompt-policy-templates/paulie-registry.js';
+import clipboardPlugin from './plugins/clipboard.js';
+import scrollPlugin from './plugins/scroll.js';
+import storagePlugin from './plugins/storage.js';
+
+const dom = {
+  prebuiltContainer: document.getElementById('prebuilt_container'),
+  formContainer: document.getElementById('form_container'),
+  preview: document.getElementById('preview'),
+  outputTextarea: document.querySelector('textarea[name="persona-output"]')
+};
 const paulie = {
-  g_templates: {},
+  // dom lookups
+  dom,
+  // plugin functions
+  plugins: [], 
+  pluginsInitialized: false,
+  use(plugin) { this.plugins.push(plugin); }, 
+  initPlugins() { if (this.pluginsInitialized) { return; } this.plugins.forEach(p => p.init?.(this)); this.pluginsInitialized = true; }, 
+  emit(event, payload) { this.plugins.forEach(p => p.on?.(event, payload)); },
+  // paulie variables
+  g_policy_registry,
+  g_policy_registry_load: false,
+  policyById: null, 
+  activePolicy: null,
+  inputByHandle: null,
   g_template_prepend: `Hi, I have a detailed set of instructions for a persona I need you to adopt for the rest of this conversation. Please read the entire prompt and confirm the persona before starting any analysis. Here is the prompt:\n\n`,
   uvars: {},
   localStorageKey: "uvars-",
   promptpolicy: "paulie-GC-generic",
   
-  async copyTextToClipboard(textToCopy) {
-    if (!navigator.clipboard) {
-      console.error("PAULIE - ERROR - Clipboard API not available.");
+  initAvailablePolicies() {
+    if(this.g_policy_registry_load) {
+      console.log("PAULIE - INIT - Policy registry available");
       return;
     }
-    try {
-      await navigator.clipboard.writeText(textToCopy);
-      console.log('PAULIE - CLICK - Copied to clipboard');
-    } catch (err) {
-      console.error('PAULIE - ERROR - Failed to copy content: ', err);
-    }
-  },
-  async loadPromptPolicy(src) {
-    console.log(`PAULIE - ASYNC - Load Prompt Policy -> ${src}`);
-    if (!this._loadedPolicies) { this._loadedPolicies = {}; }
-    if (this._loadedPolicies[src]) {
-      return this._loadedPolicies[src];
-    }
+    console.log("PAULIE - INIT - Adding from policy registry");
+    
+    this.policyById = new Map( this.g_policy_registry.map(p => [p.id, p]) );
 
-    const module = await import(`./../prompt-policy-templates/${src}.js`);
-    this._loadedPolicies[src] = module.default;
-    console.log(`PAULIE - ASYNC - Policy Loaded -> ${src}`);
-    return module.default;
+    let row = 1, policycount = 0;
+    let htmlPolicies = `<section id="prebuilt_r${row}" class="grid">`;
+    for(const policy of g_policy_registry) {
+      console.log(`Register: ${policy.id}`);
+      policycount++;
+      htmlPolicies += `<article><p><strong>${policy.persona}</strong></p><button type="submit" data-theme="dark" class="container-fluid pico-background-purple-700" data-tooltip="Customize Persona Below..."
+        data-promptpolicy="${policy.id}">Use Persona</button><small>${policy.desc}</small></article>`;
+      if(policycount % 3 == 0) {
+        row++;
+        htmlPolicies += `</section><section id="prebuilt_r${row}" class="grid">`;
+      }
+    }
+    // add empty spaces for grid
+    let spacer = 3 - (policycount % 3); if(spacer != 3 && spacer != 0) { 
+      for(let i = 0; i < spacer ; i++) { htmlPolicies += `<p>&nbsp;</p>`; } 
+    }
+    htmlPolicies += `</section>`
+
+    dom.prebuiltContainer.innerHTML = htmlPolicies;
+    this.g_policy_registry_load = true;
   },
-  async init() {
+  normalizeHandle(handle) {
+    return handle.replaceAll("-","_");
+  },
+  normalizeKeytag(handle) {
+    return "$" + handle.replaceAll("-","_");
+  },
+  initUvars() {
+    //this.uvars = this.uvarsFromLocalStorage();
+    for(const field of this.activePolicy.controls) {
+      let uid = this.normalizeHandle(field["uvar_handle"]);
+      let ktg = this.normalizeKeytag(field["uvar_handle"]);
+      this.inputByHandle.get(uid).value = this.uvars[ ktg ];
+    }
+  },
+  setActivePolicy() {
+    const policy = this.policyById.get(this.promptpolicy);
+    if (!policy) {
+      console.error(`PAULIE - ERROR - Unknown policy: ${this.promptpolicy}`);
+      return;
+    }
+    this.activePolicy = policy;
+  },
+  init() {
     console.log("PAULIE - INIT - Initiation Started...");
-    // check for policy availability, load otherwise
-    if(!this.g_templates[ this.promptpolicy ]) {
-      console.log(`PAULIE - ASYNC - Template Needed ${this.promptpolicy}`);
-      const policy = await this.loadPromptPolicy(this.promptpolicy);
-      this.g_templates[policy.id] = policy;
-      this.promptpolicy = policy.id;
-    } else {
-      console.log(`PAULIE - ASYNC - Template Available ${this.promptpolicy}`);
-    }
-
-    this.componentInit();
-    this.uvars = this.uvarsFromLocalStorage();
-    for(const field of this.g_templates[ this.promptpolicy ].controls) {
-      let uid = field["uvar_handle"].replaceAll("-","_");
-      let ktg = "$" + field["uvar_handle"].replaceAll("-","_");
-      
-      document.querySelector('input[name="'+uid+'"]').value = this.uvars[ ktg ];
-    }
+    this.initPlugins();
+    this.initAvailablePolicies();
+    this.setActivePolicy();
+    this.initHtml();
+    this.initUvars();
     this.initPrebuilts();
     this.initActions();
   },
   htmlFormFieldTemplate({ uvar_handle, uvar_ilabel, uvar_ivalue }) {
-    return `<label>${uvar_ilabel}<input name="${uvar_handle.replaceAll("-","_")}" placeholder="${uvar_ivalue}" value="${uvar_ivalue}" autocomplete="${uvar_handle}"/></label>\n`;
+    return `<label>${uvar_ilabel}<input name="${this.normalizeHandle(uvar_handle)}" placeholder="${uvar_ivalue}" value="${uvar_ivalue}" autocomplete="${uvar_handle}"/></label>\n`;
   },
-  componentInit() {
+  htmlPolicyDesc(){
+    return `<kbd>${this.activePolicy.persona}</kbd><blockquote>${this.activePolicy.desc}</blockquote>`;
+  },
+  initHtml() {
     console.log("PAULIE - INIT - Building html forms...");
     let html_collector = "";
-    if(this.g_templates[  this.promptpolicy  ].controls) {
-      for(const field of this.g_templates[  this.promptpolicy  ].controls) { 
+    if(this.activePolicy.controls) {
+      for(const field of this.activePolicy.controls) { 
         html_collector += this.htmlFormFieldTemplate(field); 
-        let ktg = "$" + field["uvar_handle"].replaceAll("-","_");
+        let ktg = this.normalizeKeytag(field["uvar_handle"]);
         this.uvars[ ktg ] = field["uvar_ivalue"]; 
       }
     }
-    document.querySelector('fieldset[id="form_container"]').innerHTML = html_collector;
+    // policy active (NOTE: May need to check ordering here of emit)
+    this.emit('policy:activated', { paulie: this });
+
+    dom.formContainer.innerHTML = this.htmlPolicyDesc() + html_collector;
     console.log("PAULIE - INIT - HTML Initialized");
-  },
-  uvarsFromLocalStorage() {
-    const parsedData = JSON.parse(window.localStorage?.getItem(this.localStorageKey + this.promptpolicy));
-    console.log("PAULIE - INIT - Pulled from localStorage.");
-    return parsedData ?? this.uvars;
-  },
-  uvarsToLocalStorage() {
-    window.localStorage?.setItem(this.localStorageKey + this.promptpolicy, JSON.stringify(this.uvars));
-    console.log("PAULIE - CLICK - Saved to localStorage.");
+    this.inputByHandle = new Map();
+    dom.formContainer.querySelectorAll('input').forEach(input => {
+      this.inputByHandle.set(input.name, input);
+    });
+    console.log("PAULIE - INIT - Inputs mapped");
   },
   populateUvars() {
-    for(const field of this.g_templates[ this.promptpolicy ].controls) {
-      let uid = field["uvar_handle"].replaceAll("-","_");
-      let ktg = "$" + field["uvar_handle"].replaceAll("-","_");
-      this.uvars[ ktg ] = document.querySelector('input[name="'+uid+'"]').value;
+    for(const field of this.activePolicy.controls) {
+      let uid = this.normalizeHandle(field["uvar_handle"]);
+      let ktg = this.normalizeKeytag(field["uvar_handle"]);
+      this.uvars[ ktg ] = this.inputByHandle.get(uid).value;
     }
   },
   generatePromptPolicy() {
-    let gentemp = this.g_templates[ this.promptpolicy ].prompt;
-    for(const field of this.g_templates[ this.promptpolicy ].controls) {
-      let ktg = "$" + field["uvar_handle"].replaceAll("-","_");
+    let gentemp = this.activePolicy.prompt;
+    for(const field of this.activePolicy.controls) {
+      let ktg = this.normalizeKeytag(field["uvar_handle"]);
       gentemp = gentemp.replaceAll( ktg , this.uvars[ ktg ] );
     }
     return gentemp; 
   },
-  focusOnCustomization() {
-    document.querySelector('#preview').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  },
-  async handlePrebuiltDelegate(event) {
+  handlePrebuiltDelegate(event) {
     const button = event.target.closest('[data-promptpolicy]');
     if (!button) return;
 
     event.preventDefault();
     const src = button.dataset.promptpolicy;
     console.log(`PAULIE - USER - ${src}`);
-    const policy = await this.loadPromptPolicy(src);
-    this.g_templates[policy.id] = policy;
-    this.promptpolicy = policy.id;
-
+    this.promptpolicy = src;
     this.init();
-    this.focusOnCustomization();
   },
   initPrebuilts() {
     console.log("PAULIE - INIT - Init prebuilts.");
@@ -122,14 +155,16 @@ const paulie = {
   handleMakePersonaClick(event) {
     event.preventDefault();
     // logic for mad libs persona
-    const textarea = document.querySelector('textarea[name="persona-output"]');
+    const textarea = dom.outputTextarea;
     if (textarea) {
       console.log("PAULIE - CLICK - Setting content...");
       this.populateUvars(); // setup user input as memory
       textarea.value = this.g_template_prepend + this.generatePromptPolicy();
       console.log("PAULIE - CLICK - Replacements complete.");
-      this.copyTextToClipboard(textarea.value); // to clipboard
-      this.uvarsToLocalStorage(); // to local storage
+      //this.copyTextToClipboard(textarea.value); // to clipboard
+      // to local storage
+      this.emit('clipboard:copy', { text: textarea.value });
+      this.emit('uvars:updated', { paulie: this });
     } else {
       console.error("PAULIE - ERROR - Textarea with name='persona-output' not found.");
     }
@@ -148,5 +183,7 @@ const paulie = {
     console.log("PAULIE - INIT - Initialization complete.");
   }, 
 };
-
+paulie.use(clipboardPlugin);
+paulie.use(scrollPlugin);
+paulie.use(storagePlugin);
 paulie.init();

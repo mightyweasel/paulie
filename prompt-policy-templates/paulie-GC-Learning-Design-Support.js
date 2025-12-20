@@ -1,5 +1,7 @@
 export default {
 id: "paulie-GC-Learning-Design-Support",
+persona: "Learning Design Support",
+desc: "A supportive learning designer colleague who knows about various design methodologies and andragogy.",
 controls: [ // define the user input sections
 { 
   uvar_handle: "uvar-learn-aud", 

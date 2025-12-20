@@ -19,103 +19,40 @@
         </ul>
       </nav>
     </header>
-    <main class="container">
+    <main id="policy_menu" class="container">
       <hgroup>
         <h2>Choose your base</h2>
         <p>Start with the one closest to your needs and customize from there</p>
       </hgroup>
-      <section id="prebuilt_r1" class="grid">
-        <article>
-          <p><strong>GC Generic</strong></p>
-          <button type="submit" data-theme="dark" class="container-fluid pico-background-purple-700" data-tooltip="Customize Persona Below..."
-            data-promptpolicy="paulie-GC-generic">
-            Use Persona
-          </button>
-          <small>A generic Prompt Policy that provides general GC brainstorming support.</small>
-        </article>
-        <article>
-          <p><strong>Sr. EC Analyst</strong></p>
-          <button type="submit" data-theme="dark" class="container-fluid pico-background-purple-700" data-tooltip="Customize Persona Below..."
-            data-promptpolicy="paulie-GC-EC-Analyst">
-            Use Persona
-          </button>
-          <small>A capable GC policy analyst, operate under ambiguity or strict constraints with task maturity and risk.</small>
-        </article>
-        <article>
-          <p><strong>Lunch Suggestion</strong></p>
-          <button type="submit" data-theme="dark" class="container-fluid pico-background-purple-700" data-tooltip="Customize Persona Below..."
-            data-promptpolicy="paulie-GC-Lunch-Suggestion">
-            Use Persona
-          </button>
-          <small>Totally unbiased, accurate, and trustworthy team lunch place suggestor.</small>
-        </article>
-      </section>
-      <section id="prebuilt_r2" class="grid">
-        <article>
-          <p><strong>Procurement Specialist</strong></p>
-          <button type="submit" data-theme="dark" class="container-fluid pico-background-purple-700" data-tooltip="Customize Persona Below..."
-            data-promptpolicy="paulie-GC-Procurement-Specialist">
-            Use Persona
-          </button>
-          <small>Procurement Officer who specializes in helping answer procurement questions.</small>
-        </article>
-        <article>
-          <p><strong>IT Security Officer</strong></p>
-          <button type="submit" data-theme="dark" class="container-fluid pico-background-purple-700" data-tooltip="Customize Persona Below..."
-            data-promptpolicy="paulie-GC-Security-Officer">
-            Use Persona
-          </button>
-          <small>IT Security Officer who helps guide folks through the security controls they typically need to address.</small>
-        </article>
-        <article>
-          <p><strong>Classification Specialist</strong></p>
-          <button type="submit" data-theme="dark" class="container-fluid pico-background-purple-700" data-tooltip="Customize Persona Below..."
-            data-promptpolicy="paulie-GC-Classification-Specialist">
-            Use Persona
-          </button>
-          <small>A Classification specialist who is able to help assess and grade job descriptions into Group and Levels suggestions.</small>
-        </article>
-      </section>
-      <section id="prebuilt_r3" class="grid">
-        <article>
-          <p><strong>Learning Design Support</strong></p>
-          <button type="submit" data-theme="dark" class="container-fluid pico-background-purple-700" data-tooltip="Customize Persona Below..."
-            data-promptpolicy="paulie-GC-Learning-Design-Support">
-            Use Persona
-          </button>
-          <small>A supportive learning designer colleague who knows about various design methodologies and andragogy.</small>
-        </article>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-      </section>
+      <div id="prebuilt_container"></div>
       <section id="preview">
-        <hgroup>
-          <h2>Customize your virtual collaborator</h2>
-          <p>Just answer some basic questions and you're set, hit Make Persona when done</p>
-        </hgroup>
-        <form>
-          <fieldset id="form_container">
-          </fieldset>
-          <button type="submit" data-theme="dark" class="container-fluid pico-background-purple-700" data-tooltip="Will copy output to clipboard automatically"
-            make-persona="make-persona">
-            Make Persona
-          </button>
-        </form>
-      </section>
-      <section id="gen_preview">
-        <hgroup>
-          <h2>Generated Persona</h2>
-          <p>Copy and paste this prompt into your favorite LLM</p>
-        </hgroup>
-        <mark>
-          <small>
-            Don't forget that AI can be wrong. Always double check the outputs with a human. Trust but verify.
-          </small>
-        </mark>
-        <textarea
-          name="persona-output" aria-label="Persona Prompt" style="font-family:'Courier New';font-size:8pt;"
-          placeholder="Awaiting Persona Details..."></textarea>
-      </section>
+          <hgroup>
+            <h2>Customize your virtual collaborator</h2>
+            <p>Just answer some basic questions and you're set, hit Make Persona when done</p>
+          </hgroup>
+          <form>
+            <fieldset id="form_container">
+            </fieldset>
+            <button type="submit" data-theme="dark" class="container-fluid pico-background-purple-700" data-tooltip="Will copy output to clipboard automatically"
+              make-persona="make-persona">
+              Make Persona
+            </button>
+          </form>
+        </section>
+        <section id="gen_preview">
+          <hgroup>
+            <h2>Generated Persona</h2>
+            <p>Copy and paste this prompt into your favorite LLM</p>
+          </hgroup>
+          <mark>
+            <small>
+              Don't forget that AI can be wrong. Always double check the outputs with a human. Trust but verify.
+            </small>
+          </mark>
+          <textarea
+            name="persona-output" aria-label="Persona Prompt" style="font-family:'Courier New';font-size:8pt;"
+            placeholder="Awaiting Persona Details..."></textarea>
+        </section>
     </main>
     <script type="module" src="js/paulie-core.js"></script>
   </body>
