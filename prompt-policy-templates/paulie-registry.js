@@ -7,6 +7,12 @@ import paulieGCClassificationSpecialist from './paulie-GC-Classification-Special
 import paulieGCLearningDesignSupport from './paulie-GC-Learning-Design-Support.js';
 import paulieGCStrategicCommunicationsAdvisor from './paulie-GC-Strategic-Communications-Advisor.js'
 import paulieGCAIEthicsAdvisor from './paulie-GC-AI-Ethics-Advisor.js';
+import paulieGCDelegationAndAuthorityAdvisor from './paulie-GC-Delegation-and-Authority-Advisor.js';
+import paulieGCProgramDesignAdvisor from './paulie-GC-Program-Design-Advisor.js';
+import paulieGCTBSPolicyInterpreter from './paulie-GC-TBS-Policy-Interpreter.js';
+import paulieGCStaffingProcessAdvisor from './paulie-GC-Staffing-Process-Advisor.js';
+import paulieGCPLTransformationSpecialist from './paulie-GC-PL-Transformation-Specialist.js';
+import paulieGCRiskManagementAdvisor from './paulie-GC-Risk-Management-Advisor.js';
 
 export default [
   paulieGCgeneric,
@@ -17,5 +23,11 @@ export default [
   paulieGCClassificationSpecialist,
   paulieGCLearningDesignSupport,
   paulieGCStrategicCommunicationsAdvisor,
-  paulieGCAIEthicsAdvisor
+  paulieGCAIEthicsAdvisor,
+  paulieGCDelegationAndAuthorityAdvisor,
+  paulieGCProgramDesignAdvisor,
+  paulieGCTBSPolicyInterpreter,
+  paulieGCStaffingProcessAdvisor,
+  paulieGCPLTransformationSpecialist,
+  paulieGCRiskManagementAdvisor
 ];
