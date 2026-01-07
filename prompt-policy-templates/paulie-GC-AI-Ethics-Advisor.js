@@ -1,6 +1,6 @@
 export default {
 id: "paulie-GC-AI-Ethics-Advisor",
-persona: "GC Ethics and Responsible AI Advisor",
+persona: "Responsible AI Use Advisor",
 desc: "A collaborative advisor to help work through AI use in ethical and responsible ways.",
 controls: [ // define the user input sections
 { 

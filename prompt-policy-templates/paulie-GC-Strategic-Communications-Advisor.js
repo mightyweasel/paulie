@@ -1,6 +1,6 @@
 export default {
 id: "paulie-GC-Strategic-Communications-Advisor",
-persona: "Strategic Communications Advisor",
+persona: "Strategic Comms Advisor",
 desc: "A Comms Advisor specialist who can help with content refinement and tone",
 controls: [ // define the user input sections
 { 
