@@ -1,3 +1,4 @@
+import paulieGCCustomAssistant from './paulie-GC-Custom-Assistant.js';
 import paulieGCgeneric from './paulie-GC-generic.js';
 import paulieGCECAnalyst from './paulie-GC-EC-Analyst.js';
 import paulieGCLunchSuggestion from './paulie-GC-Lunch-Suggestion.js';
@@ -15,6 +16,7 @@ import paulieGCPLTransformationSpecialist from './paulie-GC-PL-Transformation-Sp
 import paulieGCRiskManagementAdvisor from './paulie-GC-Risk-Management-Advisor.js';
 
 export default [
+  paulieGCCustomAssistant,
   paulieGCgeneric,
   paulieGCECAnalyst,
   paulieGCLunchSuggestion,

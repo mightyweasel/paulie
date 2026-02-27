@@ -127,11 +127,15 @@ const paulie = {
   },
   generatePromptPolicy() {
     let gentemp = this.activePolicy.prompt;
+    let prepend = this.g_template_prepend;
+    if(this.activePolicy.customprepend !== undefined) {
+      prepend = this.activePolicy.customprepend;
+    }
     for(const field of this.activePolicy.controls) {
       let ktg = this.normalizeKeytag(field["uvar_handle"]);
       gentemp = gentemp.replaceAll( ktg , this.uvars[ ktg ] );
     }
-    return gentemp; 
+    return prepend + gentemp; 
   },
   handlePrebuiltDelegate(event) {
     const button = event.target.closest('[data-promptpolicy]');
@@ -159,7 +163,7 @@ const paulie = {
     if (textarea) {
       console.log("PAULIE - CLICK - Setting content...");
       this.populateUvars(); // setup user input as memory
-      textarea.value = this.g_template_prepend + this.generatePromptPolicy();
+      textarea.value = this.generatePromptPolicy();
       console.log("PAULIE - CLICK - Replacements complete.");
       //this.copyTextToClipboard(textarea.value); // to clipboard
       // to local storage
